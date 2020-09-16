@@ -1,0 +1,18 @@
+#employeeList tbody tr {
+    cursor: pointer;
+}
+
+.dataTables_wrapper .dataTables_filter input {
+    border-color: black;
+    border-width: 1px;
+    border-radius: 5px;
+}
+input:focus {
+    outline: none
+}
+.dataTables_wrapper .dataTables_paginate .paginate_button{
+    background: transparent !important;
+}
+
+
+

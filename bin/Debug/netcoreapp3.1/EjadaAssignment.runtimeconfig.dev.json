@@ -1,0 +1,8 @@
+{
+  "runtimeOptions": {
+    "additionalProbingPaths": [
+      "/home/yehia/.dotnet/store/|arch|/|tfm|",
+      "/home/yehia/.nuget/packages"
+    ]
+  }
+}
