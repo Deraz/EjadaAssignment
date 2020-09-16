@@ -4,6 +4,7 @@ namespace EjadaAssignment.Models.ViewModels
 {
     public class LoginViewModel
     {
+        //Login View Data
         [Required]
         [EmailAddress]
         public string Email { get; set; }

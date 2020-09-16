@@ -1,3 +1,4 @@
+//global variables used for the below functions
 let flag;
 let unassignedDepartmentFlag;
 let onload = 0;
@@ -30,6 +31,7 @@ function listEmployees() {
                     </tr>`
             })
             tableRows+= '</tbody></table>'
+            // Table creation with the field rows fetched from the ajax response
             $('#employeeListDiv').html(tableRows);
             $('#employeeList').DataTable({"pagingType":"numbers"});
         },
@@ -48,7 +50,7 @@ function getDepartments() {
             $.each(result, function (key, item) {
                 options+= `<option value="${item.id}" id="${item.managerId}">${item.departmentName}</option>`
             });
-
+            //load options (Departments) in select tags
             $('#departmentEdit').html(options);
             $('#departmentCreate').html(options);
             $('#departmentCurrentName').html(options);
@@ -59,6 +61,7 @@ function getDepartments() {
     });
 }
 function createEmployee() {
+    //Validation for the input data
     if($('#firstNameCreate').val()!='' && 
        $('#lastNameCreate').val()!='' &&
        $('#emailCreate').val()!=''&&
@@ -98,7 +101,7 @@ function deleteEmployee() {
         const message = confirm("Are you sure you want to delete this employee?");
 
         if (message) {
-
+            //delete employee if confirmed by user
             $.ajax({
                 url: "/Employee/Delete/",
                 data:{
@@ -124,6 +127,7 @@ function deleteEmployee() {
     }
 }
 function getEmployee(id){
+    //get employee is used to fetch the updated employee data in the modal Edit Employee
     $.ajax({
         url: "/Employee/GetOne/"+id,
         type: "GET",
@@ -193,6 +197,7 @@ function editEmployee(){
     }
 }
 function updateManager(id){
+    //updates the department manager (Remove current manager and adds new one)
     $.ajax({
         url: "/Department/Edit",
         type: "POST",
@@ -210,6 +215,7 @@ function updateManager(id){
     });
 }
 function isManager(id, callback){
+    //check if employee is manager
     $.ajax({
         url: "/Department/List",
         type: "GET",
@@ -230,7 +236,8 @@ function isManager(id, callback){
     
 }
 function editDepartmentName() {
-    getDepartments();
+    //change department name
+    getDepartments(); //load updated departmens first
     if($('#departmentNameEdit').val()!='' && $('#departmentCurrentName').val() != ''){
         $.ajax({
             url: "/Department/Edit",
@@ -259,6 +266,7 @@ function editDepartmentName() {
    
 }
 function createDepartment() {
+    //creates a new department after validation
     if($('#departmentNameCreate').val()!='') {
         $.ajax({
             url: "/Department/Create",
@@ -288,6 +296,7 @@ function createDepartment() {
 
 
 $(document).ready( function(){
+    // List all employees and load departments in select tags on startup
     listEmployees();
     getDepartments();
 })

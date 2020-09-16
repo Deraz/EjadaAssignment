@@ -6,35 +6,28 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using EjadaAssignment.Models;
-using EjadaAssignment.Repository;
 
 namespace EjadaAssignment.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        private readonly IRepository<Employee> _repository;
-
-        public HomeController(ILogger<HomeController> logger, IRepository<Employee> repository)
+        //Constructor
+        public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
-            _repository = repository;
         }
 
         public IActionResult Index()
         {
-            return View();
-        }
-
-        public IActionResult Privacy()
-        {
+            //Home View
             return View();
         }
 
         public IActionResult Employees()
         {
-            var employees = _repository.GetAllEntities();
-            return View(employees);
+            //Employee Table View
+            return View();
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

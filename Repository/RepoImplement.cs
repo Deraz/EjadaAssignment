@@ -11,35 +11,40 @@ namespace EjadaAssignment.Repository
     public class RepoImplement<T>:IRepository<T> where T:class
     {
         private ApplicationDbContext _db;
-
+        //Dependency Injection for database instance.
         public RepoImplement(ApplicationDbContext db)
         {
             _db = db;
         }
         public List<T> GetAllEntities()
         {
+            //Read All
             return _db.Set<T>().ToList();
         }
 
         public T GetEntity(int id)
         {
+            //Read One
             return _db.Set<T>().Find(id);
         }
 
         public int Add(T entity)
         {
+            //Create One
             _db.Set<T>().Add(entity);
             return _db.SaveChanges();
         }
 
         public int Update(T entity)
         {
+            //Update One
             _db.Set<T>().Attach(entity).State = EntityState.Modified;
             return _db.SaveChanges();
         }
 
         public int Remove(int id)
         {
+            //Remove One
             var entity = GetEntity(id);
             _db.Set<T>().Remove(entity);
             return _db.SaveChanges();
@@ -47,6 +52,7 @@ namespace EjadaAssignment.Repository
 
         public List<EmployeeViewModel> GetAllInViewModel(char condition)
         {
+            //query is written as SQL Query below
            var result = 
                 from emp in _db.Employees join tbl in
                     (from e in _db.Employees
@@ -62,21 +68,14 @@ namespace EjadaAssignment.Repository
             return result.ToList();
 
 
-
-            /*SELECT tbl.FirstName, tbl.LastName, tbl.Email, tbl.Age, tbl.DepartmentName, CONCAT(Employees.FirstName,' ',Employees.LastName) as Manager
-            FROM (SELECT FirstName, LastName, Email, Age, DepartmentName, ManagerId FROM Employees as e JOIN Departments as d on e.DepartmentId = d.Id) AS tbl JOIN Employees
-            on tbl.ManagerId = Employees.Id*/
+            //SQL Query (Sub-query type)
+            //SELECT tbl.FirstName, tbl.LastName, tbl.Email, tbl.Age, tbl.DepartmentName, CONCAT(Employees.FirstName,' ',Employees.LastName) as Manager
+            //FROM
+            //(SELECT FirstName, LastName, Email, Age, DepartmentName, ManagerId FROM Employees as e
+            //JOIN Departments as d
+            //on e.DepartmentId = d.Id) AS tbl
+            //JOIN Employees
+            //on tbl.ManagerId = Employees.Id
         }
-
-        /*public int EditDepartmentName(Department department)
-        {
-            var managerId = _db.Set<Department>().Find(department.Id).ManagerId;
-            _db.Set<Department>().Attach(department).State = EntityState.Detached;
-            _db.SaveChanges();
-
-            department.ManagerId = managerId;
-            _db.Set<Department>().Attach(department).State = EntityState.Modified;
-            return _db.SaveChanges();
-        }*/
     }
 }

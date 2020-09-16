@@ -4,6 +4,7 @@ namespace EjadaAssignment.Models.ViewModels
 {
     public class RegisterViewModel
     {
+        //Registration View Data
         [Required]
         [EmailAddress]
         public string Email { get; set; }

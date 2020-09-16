@@ -12,7 +12,7 @@ namespace EjadaAssignment.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private readonly IRepository<Department> _repository;
-
+        //Dependency Injection for the repository general entity interface strongly typed to "Department"
         public DepartmentController(ILogger<HomeController> logger, IRepository<Department> repository)
         {
             _logger = logger;
@@ -21,18 +21,21 @@ namespace EjadaAssignment.Controllers
 
         public JsonResult List()
         {
+            //Return JSON for all departments
             return Json(_repository.GetAllEntities());
         }
 
         [HttpPost]
         public JsonResult Create(Department department)
         {
+            //Creation of a new department in database
             return Json(_repository.Add(department));
         }
 
         [HttpPost]
         public JsonResult Edit(Department department)
         {
+            //Updating an existing department
             return Json(_repository.Update(department));
         }
 

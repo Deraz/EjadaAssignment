@@ -15,7 +15,7 @@ namespace EjadaAssignment.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private readonly IRepository<Employee> _repository;
-
+        //Dependency Injection for the repository general entity interface strongly typed to "Employee"
         public EmployeeController(ILogger<HomeController> logger, IRepository<Employee> repository)
         {
             _logger = logger;
@@ -24,29 +24,34 @@ namespace EjadaAssignment.Controllers
 
         public JsonResult List()
         {
+            //Listing all employees with a certain join query explained in function implementation
             return Json(_repository.GetAllInViewModel('e'));
         }
 
         [HttpPost]
         public JsonResult Create(Employee employee)
         {
+            //Creation of a new employee
             return Json(_repository.Add(employee));
         }
 
         [HttpPost]
         public JsonResult Edit(Employee employee)
         {
+           //Updating an existing employee
            return Json(_repository.Update(employee));
         }
 
         [HttpPost]
         public JsonResult Delete(Employee employee)
         {
+            //Deletion of an existing employee
             return Json(_repository.Remove(employee.Id));
         }
 
         public JsonResult GetOne(int id)
         {
+            //Retrieval of a certain employee with the column ID
             return Json(_repository.GetEntity(id));
         }
         

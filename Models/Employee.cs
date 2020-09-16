@@ -4,6 +4,7 @@ namespace EjadaAssignment.Models
 {
     public class Employee
     {
+        //Employee model properties (columns)
         public int Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
@@ -12,6 +13,5 @@ namespace EjadaAssignment.Models
         
         [ForeignKey("Department")]
         public int DepartmentId { get; set; }
-    //    public Department Department { get; set; }
     }
 }
