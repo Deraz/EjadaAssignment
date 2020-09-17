@@ -94,7 +94,7 @@ function createEmployee() {
     }
 }
 function deleteEmployee() {
-    if(isManager($('#idEdit').val())){
+    if($('#isManager').prop('checked')){
         alert("Cannot delete manager before assigning department to another employee.")
     }
     else {
