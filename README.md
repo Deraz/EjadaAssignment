@@ -25,4 +25,4 @@ dotnet run
 - And this will automatically ```restore```, ```build``` and ```run``` the project
 3. Edit the connection string in appsettings.json if needed.
 
-**Will Update here with a video of me trying the application**
+- [Video Overview](https://youtu.be/EbAUsoBOohA) for the application on YouTube.
