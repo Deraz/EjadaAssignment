@@ -1,7 +1,7 @@
 # Ejada Assignment
 Ejada Assignment is a simple .NET Core web application simulating a work office management 
 
-##Project Components
+## Project Components
 - Login form
 - Registration form
 - Account management views
@@ -14,7 +14,7 @@ Ejada Assignment is a simple .NET Core web application simulating a work office 
     - Create department button
     - Edit Department button
  
- ##Usage
+ ## Usage
  1. Make sure that .NET Framework is installed.
  2. in CLI, run
  ```bash
